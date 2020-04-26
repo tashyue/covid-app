@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -22,7 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-=======
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -98,4 +96,3 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 
->>>>>>> 8c1c9d234069bde5d6b6e8dcff9bc55354bd9481
