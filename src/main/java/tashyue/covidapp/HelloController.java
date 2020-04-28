@@ -1,4 +1,4 @@
-package tashyue.covidapp;;
+package tashyue.covidapp;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
