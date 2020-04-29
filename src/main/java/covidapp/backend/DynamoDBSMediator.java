@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import software.amazon.awssdk.services.dynamodb.model.*;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 
@@ -23,9 +24,7 @@ public class DynamoDBSMediator {
 	
 	/**
 	 * Method for requesting an item from DynamoDB
-	 * @return a Map of key-value pairs associated with requested key and keyValue
-	 * 
-	 * @TODO: Figure out why keyValue is needed or if it can be replaced with an empty String
+	 * @return a Map of key-value pairs associated with requested key (column name) and keyValue (column value)
 	 * 
 	 * Code modified from AWS documentation examples
 	 */
@@ -55,5 +54,13 @@ public class DynamoDBSMediator {
 			System.exit(1);
 			return null;
 		}
+	}
+	
+	/**
+	 * Method for getting a client object for DynamoDB
+	 * @return DynamoDbClient for specified region
+	 */
+	public static DynamoDbClient getClient(Region r) {
+			return DynamoDbClient.builder().region(r).build();
 	}
 }
