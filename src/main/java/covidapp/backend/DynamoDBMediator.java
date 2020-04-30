@@ -20,7 +20,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
  *  @since 1.0
  *  
  */
-public class DynamoDBSMediator {
+public class DynamoDBMediator {
 	
 	/**
 	 * Method for requesting an item from DynamoDB
