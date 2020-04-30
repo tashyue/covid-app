@@ -6,12 +6,14 @@ function App () {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        fetch('/api/hello')
-            .then(response => response.text())
+        fetch('/api')
+            .then(response => response.json())
             .then(message => {
                 setMessage(message);
             });
-    },[])
+            
+    },
+    [])
     return (
         <div className="App">
             <h1>{message}</h1>
