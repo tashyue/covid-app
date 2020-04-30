@@ -26,8 +26,8 @@ public class CovidStateDataCollector {
 	 * 
 	 */
 	public static List<Integer> getCovidDataForState(State s) {
-		//Assume Northern California client for now
-		DynamoDbClient client = DynamoDBSMediator.getClient(Region.US_WEST_1);
+		//Assume Northern Virginia region for now
+		DynamoDbClient client = DynamoDBSMediator.getClient(Region.US_EAST_1);
 		
 		return reformatData(DynamoDBSMediator.getDynamoDBItem(client, "covid-data", "State", s.name()));
 	}
