@@ -15,11 +15,11 @@ public class HelloController {
     	
     	ArrayList<String[]> testData = DynamoDBMediatorTester.getItemTest();
     	
-    	String display = "";
+    	String display = "There were a total of " + testData.get(0)[1] 
+    					+ " deaths and " + testData.get(2)[1] 
+    					+ " hospitalizations in California. The data was given a quality grade of: " + testData.get(1)[1];
     	
-    	for(String[] kv : testData) {
-    		display += "Attribute: " + kv[0] + "  |  Value: " + kv[1] + "\n\n";
-    	}
+    	
     			
         return display;
     }

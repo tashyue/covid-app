@@ -57,6 +57,22 @@ public class DynamoDBMediator {
 	}
 	
 	/**
+	 * Method for filtering out unneeded attributes from a DynamoDB response
+	 * @param response The response to filter
+	 * @param attributesToKeep Which attributes from the response to keep
+	 * @return a Map<String, AttributeValue> with unneeded attributes removed
+	 */
+	public static Map<String, AttributeValue> filterResponse(Map<String, AttributeValue> response, String... attributesToKeep){
+		Map<String, AttributeValue> filteredResponse = new HashMap<String, AttributeValue>();
+		for(String s : attributesToKeep) {
+			if(response.containsKey(s)) {
+				filteredResponse.put(s, response.get(s));
+			}
+		}
+		return filteredResponse;
+	}
+	
+	/**
 	 * Method for getting a client object for DynamoDB
 	 * @return DynamoDbClient for specified region
 	 */
