@@ -4,11 +4,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.ArrayList;
+
+import covidapp.testing.DynamoDBMediatorTester;
 
 @RestController
 public class HelloController {
     @GetMapping("/api/hello")
     public String hello() {
-        return "Hello, the time at the server is now " + new Date() + "\n";
+    	
+    	ArrayList<String[]> testData = DynamoDBMediatorTester.getItemTest();
+    	
+    	String display = "";
+    	
+    	for(String[] kv : testData) {
+    		display += "Attribute: " + kv[0] + "  |  Value: " + kv[1] + "\n";
+    	}
+    			
+        return display;
     }
 }
