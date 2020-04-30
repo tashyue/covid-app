@@ -18,7 +18,7 @@ public class HelloController {
     	String display = "";
     	
     	for(String[] kv : testData) {
-    		display += "Attribute: " + kv[0] + "  |  Value: " + kv[1] + "\n";
+    		display += "Attribute: " + kv[0] + "  |  Value: " + kv[1] + "\n\n";
     	}
     			
         return display;
