@@ -41,10 +41,8 @@ public class HelloController {
 			}
 			allStates.add(stateData);
 		}
-       
-
-        
-        return allStates;
+    	
+        return null;
         
     }
     

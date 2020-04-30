@@ -103,7 +103,7 @@ public class DynamoDBMediator {
 		//Convert to Map<String, String> first
 		Map<String, String> temp = new HashMap<String, String>();
 		for(String key : input.keySet()) {
-			temp.put(key, input.get(key).n() == null ? input.get(key).n() : input.get(key).s());
+			temp.put(key, input.get(key).n() != null ? input.get(key).n() : input.get(key).s());
 		}
 		
 		//Convert to JSON String
