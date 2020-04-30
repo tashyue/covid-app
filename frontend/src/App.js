@@ -9,11 +9,12 @@ function App () {
         fetch('/api')
             .then(response => response.json())
             .then(message => {
-                setMessage(message);
+                setMessage(message[0]);
             });
-            
     },
     [])
+
+
     return (
         <div className="App">
             <h1>{message}</h1>

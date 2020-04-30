@@ -20,7 +20,7 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 @RestController
 public class HelloController {
-    @GetMapping("/api")
+    @GetMapping("/")
     public ArrayList<ArrayList<String[]>> hello() {
         
         // Gson gson = new Gson();
@@ -39,13 +39,26 @@ public class HelloController {
 				String numericalValue = res.get(k).n();
 				stateData.add(new String[] {k, numericalValue != null ? numericalValue : res.get(k).s() });
 			}
-			allStates.add(stateData);
+			
+
+			if(stateData.get(2)[1].equals("B")) {
+				System.out.println("B grade");
+				allStates.add(stateData);
+			}
+			if(stateData.get(2)[1].equals("A")) {
+				System.out.println("A grade");
+				allStates.add(stateData);
+			}
+			if(stateData.get(2)[1].equals("A+")) {
+				System.out.println("A+ grade");
+				allStates.add(stateData);
+			}
+
 		}
-    	
-        return null;
+        return allStates;
         
     }
-    
+    @GetMapping("/api")
     public ArrayList<String> helloJSON() {
     	DynamoDbClient client = DynamoDBMediator.getClient(Region.US_EAST_1);
     	ArrayList<String> allStates = new ArrayList<String>();
@@ -54,10 +67,11 @@ public class HelloController {
     		Map<String, AttributeValue> res = DynamoDBMediator.getDynamoDBItem(client, "covid-data", "state", state.toString());
     		res = DynamoDBMediator.filterResponse(res, "death", "hospitalizedCurrently", "dataQualityGrade");
     		
-    		String stateJSON = DynamoDBMediator.mapTOJSON(res);
+			String stateJSON = DynamoDBMediator.mapTOJSON(res);
     		allStates.add(stateJSON);
-    	}
-    	
+		}
+		
+    	System.out.println(allStates);
     	return allStates;
     }
 }
