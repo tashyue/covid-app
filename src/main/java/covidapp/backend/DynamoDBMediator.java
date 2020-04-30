@@ -1,6 +1,6 @@
 package covidapp.backend;
 
-
+import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +10,9 @@ import ch.qos.logback.classic.db.names.TableName;
 import software.amazon.awssdk.services.dynamodb.model.*;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * 
@@ -88,5 +91,26 @@ public class DynamoDBMediator {
 		return DynamoDbClient.builder().region(r).build();
 	}
 
+	/**
+	 * 
+	 * Method for converting Map<String, AttributeValue> to a JSON String
+	 * 
+	 * @param input the Map to convert
+	 * @return The output JSON string
+	 */
+	public static String mapTOJSON(Map<String, AttributeValue> input) {
+		
+		//Convert to Map<String, String> first
+		Map<String, String> temp = new HashMap<String, String>();
+		for(String key : input.keySet()) {
+			temp.put(key, input.get(key).n() == null ? input.get(key).n() : input.get(key).s());
+		}
+		
+		//Convert to JSON String
+		Gson gson = new Gson();
+		Type gsonType = new TypeToken<HashMap>(){}.getType();
+		
+		return gson.toJson(temp, gsonType);
+	}
 	
 }

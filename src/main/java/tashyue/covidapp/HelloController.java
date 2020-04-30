@@ -47,4 +47,19 @@ public class HelloController {
         return allStates;
         
     }
+    
+    public ArrayList<String> helloJSON() {
+    	DynamoDbClient client = DynamoDBMediator.getClient(Region.US_EAST_1);
+    	ArrayList<String> allStates = new ArrayList<String>();
+    	
+    	for(State state: State.values()) {
+    		Map<String, AttributeValue> res = DynamoDBMediator.getDynamoDBItem(client, "covid-data", "state", state.toString());
+    		res = DynamoDBMediator.filterResponse(res, "death", "hospitalizedCurrently", "dataQualityGrade");
+    		
+    		String stateJSON = DynamoDBMediator.mapTOJSON(res);
+    		allStates.add(stateJSON);
+    	}
+    	
+    	return allStates;
+    }
 }
