@@ -1,12 +1,7 @@
 package covidapp.testing;
 
-import java.lang.Thread.State;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
-
-import com.google.gson.Gson;
 
 import covidapp.backend.DynamoDBMediator;
 import software.amazon.awssdk.regions.Region;
