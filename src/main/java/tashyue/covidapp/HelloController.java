@@ -50,10 +50,6 @@ public class HelloController {
 			}
 
 		}
-<<<<<<< HEAD
-=======
-    	
->>>>>>> 2bc748f3e9d823f5fb8a3ed5fdbe31adff5e79d5
         return allStates;
         
     }
