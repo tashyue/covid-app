@@ -55,8 +55,10 @@ Flexible so that not all items need to have the same attributes <br />
 -----------------------------------------------------------------------------------------------------------------------
 
 ### UI Data Transport <br />
-We used Json, and you can find the json files in our project under frontend folder <br />
-(package.json and package-lock.json)
+We used React JS, which is a javaScript library for building the user interface <br/>
+We used javascript, css, and html <br/>
+Proxied through spring boot <br/>
+
 
 
 
