@@ -51,7 +51,6 @@ Allows for ease of access
 No need to use SQL, can just request item based on primary key
 Flexible so that not all items need to have the same attributes <br />
 
-#### Please find our backend folder under src/main/java/covidapp/backend for reference <br />(The folder have files that have methods to our dynamoDB).
 -----------------------------------------------------------------------------------------------------------------------
 
 ### UI Data Transport <br />
