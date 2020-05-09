@@ -41,12 +41,12 @@
 
 ----------------------------------------------------------------------------------------------------------------------
 ### For our Schema and Queries, <br />
-### Used to store our data about local cases of coronavirus <br />
+### - Used to store our data about local cases of coronavirus <br />
 Primary key: State <br /> Attributes: deaths, hospitalizations, and data grade <br /> <br />
-### Remote storage and location-agnostic access <br />
+### - Remote storage and location-agnostic access <br />
 Easy to access from backend without having to do any low-level connections <br />
 Can connect to different regions with different databases if needed <br /><br />
-### Key-value format <br />
+### - Key-value format <br />
 Allows for ease of access
 No need to use SQL, can just request item based on primary key
 Flexible so that not all items need to have the same attributes <br />
