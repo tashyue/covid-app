@@ -40,8 +40,17 @@
 ![Screen Shot 2020-05-08 at 4 11 00 PM](https://user-images.githubusercontent.com/60766152/81456895-02923d80-9149-11ea-930d-d33e21bc348a.png)
 
 ----------------------------------------------------------------------------------------------------------------------
-### For our Schema and Queries,
-#### We used DynamoDB to make a table (we used AWS console --> dynamoDB service), and instead of queries, we used methods for requesting items from DynamoDB. 
+### For our Schema and Queries, <br />
+### Used to store our data about local cases of coronavirus <br />
+Primary key: State <br /> Attributes: deaths, hospitalizations, and data grade <br /> <br />
+### Remote storage and location-agnostic access <br />
+Easy to access from backend without having to do any low-level connections <br />
+Can connect to different regions with different databases if needed <br /><br />
+### Key-value format <br />
+Allows for ease of access
+No need to use SQL, can just request item based on primary key
+Flexible so that not all items need to have the same attributes <br />
+
 #### Please find our backend folder under src/main/java/covidapp/backend for reference <br />(The folder have files that have methods to our dynamoDB).
 -----------------------------------------------------------------------------------------------------------------------
 
