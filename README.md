@@ -35,6 +35,26 @@
 5) npm start <br />
 
 6) wait little bit for the sprin-boot app to bring out the data <br />
+
+DOCKER: run these commands in unix-based terminal
+
+$ docker pull kevprakash/cmpe172app:latest
+
+in another terminal window/tab
+
+$ docker pull kevprakash/compe172app:frontend
+
+in first window/tab run
+
+$ docker run --net=host kevprakash/cmpe172app:latest
+
+in second window/tab
+
+$ docker run -t --net=host kevprakash/cmpe172app:frontend
+
+
+
+
 ---------------------------------------------------------------------------------------------------------------------
 ### Diagram for our system
 ![Screen Shot 2020-05-08 at 4 11 00 PM](https://user-images.githubusercontent.com/60766152/81456895-02923d80-9149-11ea-930d-d33e21bc348a.png)
