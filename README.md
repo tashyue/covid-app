@@ -54,9 +54,9 @@ Flexible so that not all items need to have the same attributes <br />
 -----------------------------------------------------------------------------------------------------------------------
 
 ### UI Data Transport <br />
-We used React JS, which is a javaScript library for building the user interface <br/>
-We used javascript, css, and html <br/>
-Proxied through spring boot <br/>
+- We used React JS, which is a javaScript library for building the user interface <br/>
+- We used javascript, css, and html <br/>
+- Proxied through spring boot <br/>
 
 
 
