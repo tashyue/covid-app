@@ -1,0 +1,42 @@
+
+
+	.logo{
+		height:300px;
+	}
+	.header{
+		width:700px;
+		padding: 5px;
+		text-align: center;
+		background: #1abc9c;
+		color: white;
+		font-size: 30px;
+	}
+	.table{
+		width:50%;
+		margin:0 auto;
+		background-color:lightgreen;
+	}
+		.row{
+			height:40px;
+			display: flex;
+
+		}
+		.row div{
+			width:25%;
+			height:100%;
+			background-color:lightpink;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.tableHead{
+			outline:1px solid black;
+		}
+		.tableHead div{
+
+			outline:1px solid black;
+		}
+		.table div{
+			outline:1px solid black;
+		}
+	

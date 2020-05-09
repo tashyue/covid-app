@@ -3,54 +3,70 @@ package tashyue.covidapp;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import covidapp.backend.DynamoDBMediator;
+import covidapp.backend.State;
+
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 @RestController
 public class HelloController {
-    @GetMapping("/api/hello")
-    public String hello() {
-    	
-    	//EXAMPLE FOR HOW TO USE DynamoDBMediator
-    	
-    	//Step 1: Get the client (We're using US_EAST_1 because the database is in the N. Virginia region)
-    	DynamoDbClient client = DynamoDBMediator.getClient(Region.US_EAST_1);
-    	
-    	//Step 2: Request data from DynamoDBMediator (returns a Map<String, AttributeValue)
-    		//First param: The client to use (the one we just got)
-    		//Second param: The table name (as written in the database)
-    		//Third param: The primary key column name (In this case, it's state)
-    		//Fourth param: What value of the primary key we're looking for (In this case, we're looking for California)
-    	Map<String, AttributeValue> res = DynamoDBMediator.getDynamoDBItem(client, "covid-data", "state", "CA");
-    	
-    	//Step 3: Filter out everything but the columns we want to use
-    		//First param: A Map<String, AttributeValue> that you want to filter (this is from the previous step
-    		//The rest of the params: The columns you want to keep
-    	res = DynamoDBMediator.filterResponse(res, "death", "hospitalizedCurrently", "dataQualityGrade");
-    	
-    	
-    	//Step 4: Get the values from each column
-    		//The Map's key is the column name
-    		//The associated AttributeValue is the value of the column
-    	
-    	String deathCount = res.get("death").n();											//Get the value of the "death" column; .n() gets the numerical value of this attribute as a String
-    	String hospitalizationCount = res.get("hospitalizedCurrently").n();					//Get the value of the "hospitalizedCurrently" column; .n() gets the numerical value of this attribute as a String
-    	String dataQualityGrade = res.get("dataQualityGrade").s();							//Get the value of the "dataQualityGrade" column; .s() gets the String value of this attribute
-    	
-    	
-    	//Step 5: Use the values you got however you want (here I just put them in a String to display)
-    	String display = "There were a total of " + deathCount 
-    					+ " deaths and " + hospitalizationCount
-    					+ " hospitalizations in California. The data was given a quality grade of: " + dataQualityGrade;
-    	
-    	
-    			
-        return display;
+    @GetMapping("/api/array")
+    public ArrayList<ArrayList<String[]>> hello() {
         
-        //END EXAMPLE
+        // Gson gson = new Gson();
+        // ArrayList<String[]> json = gson.toJson(testData);
+
+    	DynamoDbClient client = DynamoDBMediator.getClient(Region.US_EAST_1);
+		ArrayList<String[]> stateData = new ArrayList<String[]>();
+		ArrayList<ArrayList<String[]>> allStates = new ArrayList<ArrayList<String[]>>();
+		for(State state : State.values()) {
+			Map<String, AttributeValue> res = DynamoDBMediator.getDynamoDBItem(client, "covid-data", "state", state.toString());
+			res = DynamoDBMediator.filterResponse(res, "death", "hospitalizedCurrently", "dataQualityGrade");
+			stateData = new ArrayList<String[]>();
+			stateData.add(new String[]{state.name});
+			for (String k : res.keySet()) {
+				// Add key-value pair
+				String numericalValue = res.get(k).n();
+				stateData.add(new String[] {k, numericalValue != null ? numericalValue : res.get(k).s() });
+			}
+			
+
+			if(stateData.get(2)[1].equals("B")) {
+				System.out.println("B grade");
+				allStates.add(stateData);
+			}
+			if(stateData.get(2)[1].equals("A")) {
+				System.out.println("A grade");
+				allStates.add(stateData);
+			}
+			if(stateData.get(2)[1].equals("A+")) {
+				System.out.println("A+ grade");
+				allStates.add(stateData);
+			}
+
+		}
+        return allStates;
+        
+    }
+    @GetMapping("/api")
+    public ArrayList<String> helloJSON() {
+    	DynamoDbClient client = DynamoDBMediator.getClient(Region.US_EAST_1);
+    	ArrayList<String> allStates = new ArrayList<String>();
+    	
+    	for(State state: State.values()) {
+    		Map<String, AttributeValue> res = DynamoDBMediator.getDynamoDBItem(client, "covid-data", "state", state.toString());
+    		res = DynamoDBMediator.filterResponse(res, "death", "hospitalizedCurrently", "dataQualityGrade");
+    		
+			String stateJSON = DynamoDBMediator.mapTOJSON(res);
+    		allStates.add(stateJSON);
+		}
+		
+    	System.out.println(allStates);
+    	return allStates;
     }
 }

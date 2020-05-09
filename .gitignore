@@ -73,3 +73,5 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 
+dynamoCurrent.json
+current.json

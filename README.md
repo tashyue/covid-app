@@ -5,7 +5,7 @@
 -----------------------------------------------------------------------------------------------------------------
 ### Application Description
 
-#### Covid19 Application is to show the impact of coronavirus in the United States, and it shows the death and hospitalized number caused by Coronavirus by states. AWS, Spring Boot, DynamoDB, Docker, Maven, React.js are the programs used in our project, and the data is from covidtracking.com where they collect it from national news.
+#### Covid19 Application is to show the impact of coronavirus in the United States, and it shows the death and hospitalized number caused by Coronavirus by states. AWS, Spring Boot, DynamoDB, and Docker are the programs used in our project, and the data is from covidtracking.com where they collect it from national news.
 -----------------------------------------------------------------------------------------------------------------
 
 ![Screen Shot 2020-05-08 at 4 05 50 PM](https://user-images.githubusercontent.com/60766152/81456684-286b1280-9148-11ea-8322-d1e41847e52a.png)
@@ -48,7 +48,6 @@
 ### UI Data Transport <br />
 We used Json, and you can find the json files in our project under frontend folder <br />
 (package.json and package-lock.json)
-
 
 
 
